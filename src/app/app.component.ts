@@ -15,25 +15,17 @@ import { Component } from "@angular/core";
         <a mat-stroked-button routerLinkActive="active" routerLink="photos"
           >Photos</a
         >
+
+        <a mat-stroked-button routerLinkActive="active" routerLink="application/5"
+          >Application</a
+        >
       </mat-toolbar>
     </header>
     <main class="content">
-      <aside class="sidebar">
-        <router-outlet></router-outlet>
-      </aside>
-      <section class="details">
-        <router-outlet
-          (activate)="isButtonVisible = true"
-          (deactivate)="isButtonVisible = false"
-          name="details"
-        ></router-outlet>
-        <a
-          mat-button
-          *ngIf="isButtonVisible"
-          [routerLink]="['', { outlets: { details: null } }]"
-          >close</a
-        >
-      </section>
+      
+        <app-user-sidebar></app-user-sidebar>
+      
+      <router-outlet></router-outlet>
     </main>
   `,
   styles: [
