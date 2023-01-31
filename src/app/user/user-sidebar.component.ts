@@ -11,10 +11,13 @@ interface User {
 @Component({
   selector: "app-user-sidebar",
   template: `
+    <a [routerLink]="'application/5'">Step 1a</a>
+    <a [routerLink]="['application', '5', {outlets: {step: ['0']} }]">Step 1b</a>
+
     <ul>
       <li *ngFor="let user of users$ | async">
         <a
-          [routerLink]="['', { outlets: { details: ['user', user.id] } }]"
+          [routerLink]="getRouterLink(user)"
           class="link primary"
         >
           <h4 class="mat-title">{{ user.name }}</h4>
@@ -44,5 +47,9 @@ export class UserSidebarComponent implements OnInit {
     this.users$ = this.http.get<User[]>(
       `https://jsonplaceholder.typicode.com/users`
     );
+  }
+
+  public getRouterLink(user: any): any {
+    return ['', {outlets: {details: ['user', user.id] } }];
   }
 }

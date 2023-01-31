@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { pluck, switchMap } from "rxjs/operators";
 
@@ -40,8 +40,11 @@ export class PhotosDetailsComponent implements OnInit {
   photo$!: Observable<PhotoDetails>;
   constructor(
     private http: HttpClient,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    debugger;
+  }
 
   ngOnInit(): void {
     this.photo$ = this.activatedRoute.params.pipe(
